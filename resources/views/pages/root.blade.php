@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','首页')
+@section('title','LaraBBS')
 @section('content')
     <h1>首页</h1>
 @endsection

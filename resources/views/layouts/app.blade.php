@@ -7,7 +7,7 @@
     {{--CSRF-TOKEN --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title','LaraBBS') -Laravel进阶教程 </title>
+    <title>@yield('title','LaraBBS')</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
