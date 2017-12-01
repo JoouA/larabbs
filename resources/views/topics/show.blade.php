@@ -32,7 +32,7 @@
             <div class="topic-body">
                 {!! $topic->body !!}
             </div>
-
+            @can('update',$topic)
             <div class="operate">
                 <hr>
                 <a href="{{ route('topics.edit',$topic->id) }}" class="btn btn-default btn-xs" role="button">
@@ -42,6 +42,7 @@
                     <i class="glyphicon glyphicon-trash"></i>删除
                 </a>
             </div>
+            @endcan
         </div>
     </div>
 </div>
