@@ -69,7 +69,7 @@
                 textarea: $('#editor'),
                 upload:{
                     url : '{{ route('topics.upload_image') }}',
-                    params: { _token:'{{ csrf_field()  }}' },
+                    params: { _token:'{{ csrf_token()  }}' },
                     fileKey: 'upload_file',
                     connectionCount: 3,
                     leaveConfirm: '文件上传中，关闭此页面将取消上传。'
