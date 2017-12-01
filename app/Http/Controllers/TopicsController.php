@@ -64,4 +64,9 @@ class TopicsController extends Controller
 
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
+
+	public function uploadImage(Request $request)
+    {
+
+    }
 }
