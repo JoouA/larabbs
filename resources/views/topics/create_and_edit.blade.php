@@ -38,7 +38,7 @@
                                 <select class="form-control" name="category_id" required>
                                     <option value="" hidden disabled selected>请选择分类</option>
                                     @foreach ($categories as $value)
-                                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                        <option value="{{ $value->id }}" {{ $value->id == $topic->id ? 'selected' : ''}} selected>{{ $value->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="well well-sm">
-                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
+                                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
                             </div>
                     </form>
                 </div>
