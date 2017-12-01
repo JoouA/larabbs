@@ -10,7 +10,7 @@
             <hr>
             <div class="media">
                 <div align="center">
-                    <a href="{{ 'users.show',$topic->user->id }}">
+                    <a href="{{ route('users.show',$topic->user->id ) }}">
                         <img  class="thumbnail img-responsive" src="{{ $topic->user->avatar }}" alt="avatar" width="300px" height="300px">
                     </a>
                 </div>
