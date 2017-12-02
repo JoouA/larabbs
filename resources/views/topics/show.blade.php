@@ -48,6 +48,13 @@
                 </div>
             @endcan
         </div>
+        {{--用户回复列表--}}
+        <div class="panel panel-default topic-reply">
+            <div class="panel panel-body">
+                @include('topics._reply_box',['topic' => $topic])
+                @include('topics._reply_list',['replies' => $topic->replies()->with('user')->get()])
+            </div>
+        </div>
     </div>
 </div>
 @stop
