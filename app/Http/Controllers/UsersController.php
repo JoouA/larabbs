@@ -16,8 +16,9 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        $topics = $user->topics()->paginate(5);
-        return view('users.show',compact('user','topics'));
+        $topics = $user->topics()->recent()->paginate(5);
+        $replies = $user->replies()->with('topic')->recent()->paginate(5);
+        return view('users.show',compact('user','topics','replies'));
     }
 
     public function edit(User $user)

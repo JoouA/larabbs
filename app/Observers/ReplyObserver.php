@@ -18,4 +18,15 @@ class ReplyObserver
     {
         //
     }
+
+    public function saving(Reply $reply)
+    {
+        //在存储的时候过滤掉xss攻击
+        $reply->content = clean($reply->content,'user_topic_body');
+    }
+
+    public function saved(Reply $reply)
+    {
+        $reply->topic()->increment('reply_count',1);
+    }
 }

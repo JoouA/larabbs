@@ -32,3 +32,6 @@
         </div>
     @endforeach
 </div>
+<div class="pull-right">
+    {{ $replies->links() }}
+</div>

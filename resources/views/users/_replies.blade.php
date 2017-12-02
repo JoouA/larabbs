@@ -21,6 +21,7 @@
 @else
     <div class="empty-block">暂无数据 ~_~ </div>
 @endif
-
-{{-- 分页 --}}
-{!! $replies->appends(Request::except('page'))->render() !!}
+<div class="pull-right">
+    {{-- 分页 --}}
+    {!! $replies->appends(Request::except('page'))->render() !!}
+</div>

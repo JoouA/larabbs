@@ -26,12 +26,13 @@ class TopicsController extends Controller
 
     public function show(Request $request,Topic $topic)
     {
+        $replies = $topic->replies()->recent()->with('user')->paginate(5);
         //url 矫正
         if ( !empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(),301);
         }
 
-        return view('topics.show', compact('topic'));
+        return view('topics.show', compact('topic','replies'));
     }
 
 	public function create(Topic $topic)
