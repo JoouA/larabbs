@@ -21,14 +21,14 @@ class RepliesController extends Controller
         $reply->topic_id = $request->topic_id;
         $reply->save();
 
-		return redirect()->to($reply->topic->link())->with('message', '创建成功!');
+		return redirect()->to($reply->topic->link())->with('success', '回复成功!');
 	}
 
 	public function destroy(Reply $reply)
 	{
-		$this->authorize('destroy', $reply);
+		$this->authorize('destroy',$reply);
 		$reply->delete();
 
-		return redirect()->route('replies.index')->with('message', '删除成功!');
+		return redirect()->to($reply->topic->link()) ->with('success', '删除回复成功!');
 	}
 }

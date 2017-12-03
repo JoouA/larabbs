@@ -37,4 +37,11 @@ class ReplyObserver
         }
 
     }
+
+    public function deleted(Reply $reply)
+    {
+        $topic = $reply->topic;
+
+        $topic->decrement('reply_count',1);
+    }
 }
