@@ -38,5 +38,14 @@ class UsersTableSeeder extends Seeder
 
         // 插入到数据库中
         User::insert($user_array);
+
+
+        $user = User::find(1);
+        //初始化角色，将1号用户指定为站长
+        $user->assignRole('Founder');
+
+        // 将 2 号用户指派为『管理员』
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
     }
 }

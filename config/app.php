@@ -170,6 +170,7 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */
