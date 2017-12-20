@@ -44,13 +44,3 @@ Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']])
 Route::resource('notifications','NotificationsController',['only' => ['index']]);
 
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
-
-
-Route::get('test', function (){
-    $topic_users = Topic::query()->select(DB::raw('user_id,count(*) as topic_count'))
-        ->groupBy('user_id')
-        ->get();
-    dd($topic_users);
-});
-
-
