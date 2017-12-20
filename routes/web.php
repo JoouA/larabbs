@@ -10,10 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Models\Topic;
-use Carbon\Carbon;
-
-Route::get('/','PagesController@root')->name('root');
+Route::get('/','TopicsController@index')->name('root');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
