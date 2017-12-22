@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Jobs\sendEmailToResetPassword;
 use App\Models\Traits\ActiveUserHelper;
 use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
+use App\Notifications\ResetPassword;
+
 
 class User extends Authenticatable
 {
@@ -92,4 +95,18 @@ class User extends Authenticatable
 
         $this->attributes['avatar'] = $path;
     }
+
+
+    // 重写发送邮件
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
+
 }
