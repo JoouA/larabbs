@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/simditor.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/simditor-markdown.css') }}" media="screen" charset="utf-8" />
 @stop
 @section('content')
 
@@ -64,6 +65,7 @@
     <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
 
     <script>
+        var toolbar = ['bold', 'italic','underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment',];
         $(document).ready(function(){
             var editor = new Simditor({
                 textarea: $('#editor'),
@@ -74,6 +76,7 @@
                     connectionCount: 3,
                     leaveConfirm: '文件上传中，关闭此页面将取消上传。'
                 },
+                toolbar:toolbar,
                 postImage: true,
             });
         });

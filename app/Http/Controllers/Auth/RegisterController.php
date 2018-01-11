@@ -47,15 +47,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'name.required' => '请填写用户名',
+            'name.unique' => '用户名已存在',
+            'mobile.required' => '手机号码不能为空',
+            'mobile.unique' => '手机号码已经被注册',
+            'verifyCode.required' => '请填写验证码',
+            'verifyCode.verify_code' => '验证码不正确',
+        ];
+
         return Validator::make($data, [
             'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'captcha' => 'required|captcha',
-        ],[
-            'captcha.required' => '验证码不能为空',
-            'captcha.captcha' => '请输入正确的验证码',
-        ]);
+            'mobile'     => 'required|confirm_mobile_not_change|confirm_rule:mobile_required|unique:users,phone',
+            'verifyCode' => 'required|verify_code',
+        ],$messages);
     }
 
     /**
@@ -66,10 +73,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['mobile'],
         ]);
     }
 }

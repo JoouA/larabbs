@@ -171,6 +171,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Toplan\PhpSms\PhpSmsServiceProvider::class,
+        Toplan\Sms\SmsManagerServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -230,6 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'PhpSms' => Toplan\PhpSms\Facades\Sms::class,
+        'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
 
     ],
 
