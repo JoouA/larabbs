@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserLogin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -95,6 +96,7 @@ class LoginController extends Controller
 
         if ($if_user_exit){
             Auth::login($if_user_exit);
+            $this->UserLogin($if_user_exit);
         }else{
             try{
                 $user = User::create($user_info);
@@ -124,5 +126,32 @@ class LoginController extends Controller
         $user = $socialite->driver('weibo')->user();
 
         dd($user);
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        $this->UserLogin($this->guard()->user());
+        return $this->authenticated($request, $this->guard()->user())
+            ?: redirect()->intended($this->redirectPath());
+    }
+
+
+    /**
+     * @param $user
+     */
+    protected function UserLogin($user)
+    {
+        // 登录成功后触发UserLogin事件
+        event(new UserLogin($user));
     }
 }

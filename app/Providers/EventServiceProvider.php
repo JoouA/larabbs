@@ -13,8 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        // 当有用户登录的时候就记录用户的信息
+        'App\Events\UserLogin' => [
+            'App\Listeners\RecordLogin',
         ],
     ];
 
