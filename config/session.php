@@ -194,4 +194,14 @@ return [
 
     'same_site' => null,
 
+    // config/session.php
+    // The storage for store the last session id.
+    'last_session_storage' => 'cache', // cache(default)/database
+
+    // The field name of last session id.
+    'last_session_field' => 'last_session_id',
+
+    // The path of redirect when logout after session changed.
+    'redirect_path' => '/',
+
 ];

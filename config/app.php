@@ -173,6 +173,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Toplan\PhpSms\PhpSmsServiceProvider::class,
         Toplan\Sms\SmsManagerServiceProvider::class,
+        Overtrue\LaravelSingleSession\SingleSessionServiceProvider::class,
 
         /*
          * Application Service Providers...

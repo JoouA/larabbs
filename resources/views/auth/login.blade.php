@@ -64,15 +64,23 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     登录
                                 </button>
-
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     忘记密码?
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 14px;">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="{{ url('/oauth/github') }}">
+                                    <i class="fa fa-github"></i> 使用Github登录
+                                </a>
+                                <a href="{{ route('weibo.provider') }}" class="pull-right">
+                                    <i class="fa fa-weibo"></i> 使用微博登录
                                 </a>
                             </div>
                         </div>

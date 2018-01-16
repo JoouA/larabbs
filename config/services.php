@@ -39,5 +39,14 @@ return [
         'appid' => env('BAIDU_TRANSLATE_APPID'),
         'key'   => env('BAIDU_TRANSLATE_KEY'),
     ],
-
+    'github' => [
+        'client_id'     => env('GITHUBID'),
+        'client_secret' => env('GITHUBKEY'),
+        'redirect'      => env('GITHUBCALLBACK'),
+    ],
+    'weibo' => [
+        'client_id' => env('WEIBOCLIENT'),
+        'client_secret' => env('WEIBOSECRET'),
+        'redirect' => env('WEIBOCALLBACK'),
+    ],
 ];

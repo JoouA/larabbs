@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Overtrue\Socialite\SocialiteManager;
+
 class LoginController extends Controller
 {
     /*
@@ -55,4 +59,70 @@ class LoginController extends Controller
         ]);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function redirectToProvider()
+    {
+        $config = config('services');
+
+        $socialite = new SocialiteManager($config);
+
+        return $socialite->driver('github')->redirect();
+    }
+
+    /**
+     *
+     */
+    public function handleProviderCallback()
+    {
+        $config = config('services');
+
+        $socialite = new SocialiteManager($config);
+
+        $user = $socialite->driver('github')->user();
+
+
+        $user_info = [
+            'name' => $user->getUsername(),
+            'email'=> $user->getEmail(),
+            'password' => bcrypt(str_random(6)),
+            'avatar' => $user->getAvatar(),
+        ];
+
+        // 对user_info里面的邮箱进行判断，如果一样就直接登录
+        $if_user_exit = User::query()->where('email',$user_info['email'])->first();
+
+        if ($if_user_exit){
+            Auth::login($if_user_exit);
+        }else{
+            try{
+                $user = User::create($user_info);
+                Auth::login($user);
+                return redirect()->route('root');
+            }catch (\Exception $e){
+                return redirect()->route('login')->with('danger','登陆失败');
+            }
+        }
+        return redirect()->route('root');
+    }
+
+    public function weiboProvider()
+    {
+        $config = config('services');
+
+        $socialite = new SocialiteManager($config);
+        return $socialite->driver('weibo')->redirect();
+    }
+
+    public function weiboProviderCallback()
+    {
+        $config = config('services');
+
+        $socialite = new SocialiteManager($config);
+
+        $user = $socialite->driver('weibo')->user();
+
+        dd($user);
+    }
 }

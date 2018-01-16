@@ -16,6 +16,12 @@ Route::get('/','TopicsController@index')->name('root');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
+//github login
+Route::get('/oauth/github', 'Auth\LoginController@redirectToProvider');
+Route::get('/oauth/github/callback', 'Auth\LoginController@handleProviderCallback');
+//sina weibo login
+Route::get('/oauth/weoboi','Auth\LoginController@weiboProvider')->name('weibo.provider');
+Route::get('/oauth/weoboi/callback','Auth\LoginController@weiboProviderCallback')->name('weibo.callback');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
